@@ -1,19 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ClassLibrary
-{
-    public class CurrencyInfo : IComparable<CurrencyInfo>
-    {
+namespace ClassLibrary1 {
+    public class CurrencyInfo : IComparable<CurrencyInfo> {
         public string Name { get; private set; }
         public int Converter { get; private set; }
         public string Code { get; private set; }
         public double ExchangeRate { get; private set; }
         public DateTime Date { get; private set; }
-        public CurrencyInfo(string name, int converter, string code, double rate, DateTime date)
-        {
+        public CurrencyInfo(string name, int converter, string code, double rate, DateTime date) {
             Name = name;
             Converter = converter;
             Code = code;
@@ -21,18 +18,14 @@ namespace ClassLibrary
             Date = date;
         }
 
-        public enum DisplayOptions
-        {
+        public enum DisplayOptions {
             Name, Converter, Code, ExchangeRate, Date
         }
 
-        public string ToString(params DisplayOptions[] displayOptions)
-        {
+        public string ToString(params DisplayOptions[] displayOptions) {
             var arr = new string[] { "", "", "", "", "" };
-            foreach (var option in displayOptions)
-            {
-                switch (option)
-                {
+            foreach(var option in displayOptions) {
+                switch(option) {
                     case DisplayOptions.Name:
                         arr[0] = $"Name: {Name}";
                         break;
@@ -56,6 +49,7 @@ namespace ClassLibrary
         public int CompareTo(CurrencyInfo obj) => this.ExchangeRate > obj.ExchangeRate ? 1 :
             (this.ExchangeRate < obj.ExchangeRate ? -1 : 0);
 
-        public static double operator -(CurrencyInfo first, CurrencyInfo sec)
+        public static double operator -(CurrencyInfo first, CurrencyInfo sec) 
             => Math.Round(first.ExchangeRate - sec.ExchangeRate, 4);
     }
+}

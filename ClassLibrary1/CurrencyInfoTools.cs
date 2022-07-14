@@ -1,14 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClassLibrary
-{
-    public class CurrencyInfoTools
-    {
+namespace ClassLibrary1 {
+    public class CurrencyInfoTools {
         public List<CurrencyInfo> CurrencyInfoList { get; }
-        public CurrencyInfoTools(List<CurrencyInfo> list)
-        {
+        public CurrencyInfoTools(List<CurrencyInfo> list) {
             CurrencyInfoList = list;
         }
 
@@ -19,15 +16,12 @@ namespace ClassLibrary
         public double StandardDeviation() => Math.Round(
             Math.Sqrt(CurrencyInfoList.Select(el => el.ExchangeRate)
                 .Sum(el => Math.Pow(el - Average(), 2)) / (CurrencyInfoList.Count() - 1)), 6);
-        public CurrencyInfo[][] LargestExchangeRatesDifferences()
-        {
+        public CurrencyInfo[][] LargestExchangeRatesDifferences() {
             var list = new List<CurrencyInfo[]>();
             var minDates = CurrencyInfoList.Where(el => el.ExchangeRate == Min().ExchangeRate);
             var maxDates = CurrencyInfoList.Where(el => el.ExchangeRate == Max().ExchangeRate);
-            foreach (var minDate in minDates)
-            {
-                foreach (var maxDate in maxDates)
-                {
+            foreach(var minDate in minDates) {
+                foreach(var maxDate in maxDates) {
                     list.Add(new CurrencyInfo[] { minDate, maxDate });
                 }
             }
